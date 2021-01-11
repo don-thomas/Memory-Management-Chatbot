@@ -45,6 +45,85 @@ ChatBot::~ChatBot()
 //// STUDENT CODE
 ////
 
+// copy constructor
+ChatBot::ChatBot(const ChatBot &other){
+    std::cout << "ChatBot Copy Constructor" << std::endl;
+    _image = new wxBitmap(*(other._image)); // One Owner
+
+    _currentNode = other._currentNode;
+    _rootNode = other._rootNode;
+    _chatLogic = other._chatLogic;
+
+    // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
+   //_chatBot->SetChatLogicHandle(this);
+}
+
+ChatBot &ChatBot::operator=(const ChatBot &other){
+    std::cout << "ChatBot Copy Assignment Constructor" << std::endl;
+    if (this != &other){
+        delete _image;
+        _image = nullptr;
+    }
+    else{
+        return *this;
+    }
+
+    _image = new wxBitmap(*(other._image)); // One Owner
+
+    _currentNode = other._currentNode;
+    _rootNode = other._rootNode;
+    _chatLogic = other._chatLogic;
+
+    // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
+    //_chatBot->SetChatLogicHandle(this);
+    return *this;
+}
+
+ChatBot::ChatBot(ChatBot &&other){
+    std::cout << "ChatBot Move Copy Constructor" << std::endl;
+    _image = other._image; // One Owner
+
+    _currentNode = other._currentNode;
+    _rootNode = other._rootNode;
+    _chatLogic = other._chatLogic;
+
+    other._image = NULL;
+    other._rootNode = nullptr;
+    other._currentNode = nullptr;
+    other._chatLogic = nullptr;
+
+    // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
+    //_chatBot->SetChatLogicHandle(this);
+}
+
+ChatBot &ChatBot::operator=(ChatBot &&other){
+    std::cout << "ChatBot Move Copy Assignment Constructor" << std::endl;
+    if (this != &other){
+        delete _image;
+        _image = nullptr;
+    }
+    else{
+        return *this;
+    }
+
+    _image = new wxBitmap(*(other._image)); // One Owner
+
+    _currentNode = other._currentNode;
+    _rootNode = other._rootNode;
+    _chatLogic = other._chatLogic;
+
+    other._image = NULL;
+    other._rootNode = nullptr;
+    other._currentNode = nullptr;
+    other._chatLogic = nullptr;
+
+    // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
+    //_chatBot->SetChatLogicHandle(this);
+
+    return *this;
+}
+
+
 ////
 //// EOF STUDENT CODE
 

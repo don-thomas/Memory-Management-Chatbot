@@ -19,7 +19,7 @@ std::string imgBasePath = dataPath + "images/";
 bool ChatBotApp::OnInit()
 {
     // create window with name and show it
-    ChatBotFrame *chatBotFrame = new ChatBotFrame(wxT("Udacity ChatBot"));
+    ChatBotFrame *chatBotFrame = new ChatBotFrame(wxT("Memory ChatBot"));
     chatBotFrame->Show(true);
 
     return true;
@@ -114,11 +114,11 @@ ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
     // allow for PNG images to be handled
     wxInitAllImageHandlers();
 
-    //// STUDENT CODE
+    //// Done: STUDENT CODE
     ////
 
     // create chat logic instance
-    _chatLogic = new ChatLogic(); 
+    _chatLogic.reset(new ChatLogic()); 
 
     // pass pointer to chatbot dialog so answers can be displayed in GUI
     _chatLogic->SetPanelDialogHandle(this);
@@ -132,10 +132,11 @@ ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
 
 ChatBotPanelDialog::~ChatBotPanelDialog()
 {
-    //// STUDENT CODE
+    //// Done: STUDENT CODE
     ////
 
-    delete _chatLogic;
+    // Smart Pointer will take of the freeing the memory
+    //delete _chatLogic;
 
     ////
     //// EOF STUDENT CODE
