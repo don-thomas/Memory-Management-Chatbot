@@ -114,8 +114,6 @@ ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
     // allow for PNG images to be handled
     wxInitAllImageHandlers();
 
-    //// Done: STUDENT CODE
-    ////
 
     // create chat logic instance
     _chatLogic.reset(new ChatLogic()); 
@@ -126,20 +124,12 @@ ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
     // load answer graph from file
     _chatLogic->LoadAnswerGraphFromFile(dataPath + "src/answergraph.txt");
 
-    ////
-    //// EOF STUDENT CODE
 }
 
 ChatBotPanelDialog::~ChatBotPanelDialog()
 {
-    //// Done: STUDENT CODE
-    ////
-
-    // Smart Pointer will take of the freeing the memory
+    // Smart Pointer will take care of the freeing the memory
     //delete _chatLogic;
-
-    ////
-    //// EOF STUDENT CODE
 }
 
 void ChatBotPanelDialog::AddDialogItem(wxString text, bool isFromUser)
